@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">yaqs</string>
+    <string name="app_name">YAQS</string>
+    <string name="no_c_activity_implemented_yet">No C-Activity implemented yet.</string>
+    <string name="back">Back</string>
+    <string name="history">History</string>
+    <string name="open_link">Open Link</string>
+    <string name="c">C</string>
+    <string name="no_history_implemented_yet">No History implemented yet.</string>
 </resources>
