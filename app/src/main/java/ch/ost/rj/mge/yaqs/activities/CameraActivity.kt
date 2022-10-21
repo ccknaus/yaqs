@@ -8,6 +8,7 @@ import ch.ost.rj.mge.yaqs.R
 import ch.ost.rj.mge.yaqs.intents.intents.Companion.activityC
 import ch.ost.rj.mge.yaqs.intents.intents.Companion.activityHistory
 import ch.ost.rj.mge.yaqs.intents.intents.Companion.openURL
+import ch.ost.rj.mge.yaqs.permission.Camera
 
 class CameraActivity : AppCompatActivity() {
     private val CAMERA_PERMISSION_CODE = 1
@@ -32,10 +33,11 @@ class CameraActivity : AppCompatActivity() {
 
         openLinkButton = findViewById(R.id.camera_button_openlink)
         openLinkButton.setOnClickListener{ startActivity(openURL(URL)) }
+
+        requestCameraPermission()
     }
 
-    private fun requestCameraPermission() {
-        requestPermission(Manifest.permission.CAMERA, CAMERA_PERMISSION_CODE)
-    }
+    private fun requestCameraPermission() =
+        Camera.requestPermission(this, this, Manifest.permission.CAMERA, CAMERA_PERMISSION_CODE)
 
 }
