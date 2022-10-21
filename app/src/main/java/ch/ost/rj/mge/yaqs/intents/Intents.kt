@@ -7,7 +7,7 @@ import ch.ost.rj.mge.yaqs.activities.CActivity
 import ch.ost.rj.mge.yaqs.activities.CameraActivity
 import ch.ost.rj.mge.yaqs.activities.HistoryActivity
 
-class intents {
+class Intents {
 
     companion object {
         internal fun openURL(URL : String) : Intent {
