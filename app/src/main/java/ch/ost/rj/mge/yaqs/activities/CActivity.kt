@@ -5,6 +5,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import ch.ost.rj.mge.yaqs.R
 import ch.ost.rj.mge.yaqs.intents.intents
+import ch.ost.rj.mge.yaqs.intents.intents.Companion.activityCamera
 
 class CActivity : AppCompatActivity() {
 
@@ -15,7 +16,7 @@ class CActivity : AppCompatActivity() {
         setContentView(R.layout.activity_c)
 
         backButton = findViewById(R.id.c_back)
-        backButton.setOnClickListener { startActivity(intents.activityCamera(this)) }
+        backButton.setOnClickListener { startActivity(activityCamera(this)) }
     }
 
 
