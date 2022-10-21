@@ -30,6 +30,10 @@ class CameraActivity : AppCompatActivity() {
         openLinkButton = findViewById(R.id.camera_button_openlink)
         openLinkButton.setOnClickListener{ startActivity(Intents.openURL(URL)) }
 
+        requestCameraPermission()
     }
+
+    private fun requestCameraPermission() =
+        Camera.requestPermission(this, this, Manifest.permission.CAMERA, CAMERA_PERMISSION_CODE)
 
 }
