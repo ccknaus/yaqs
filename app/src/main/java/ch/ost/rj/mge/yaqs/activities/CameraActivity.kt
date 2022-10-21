@@ -1,14 +1,17 @@
 package ch.ost.rj.mge.yaqs.activities
 
+import android.Manifest
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import ch.ost.rj.mge.yaqs.R
 import ch.ost.rj.mge.yaqs.intents.Intents
+import ch.ost.rj.mge.yaqs.permission.Camera
 
 class CameraActivity : AppCompatActivity() {
 
     // model
+    private val CAMERA_PERMISSION_CODE = 1
     private val URL = "https://www.ost.ch"
 
     // view
