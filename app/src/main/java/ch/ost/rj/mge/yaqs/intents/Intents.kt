@@ -3,7 +3,7 @@ package ch.ost.rj.mge.yaqs.intents
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import ch.ost.rj.mge.yaqs.activities.CActivity
+import ch.ost.rj.mge.yaqs.activities.CopyActivity
 import ch.ost.rj.mge.yaqs.activities.CameraActivity
 import ch.ost.rj.mge.yaqs.activities.HistoryActivity
 
@@ -16,8 +16,8 @@ class Intents {
             return intent
         }
 
-        internal fun activityC(context : Context) : Intent {
-            return Intent(context, CActivity::class.java)
+        internal fun activityCopy(context : Context) : Intent {
+            return Intent(context, CopyActivity::class.java)
         }
 
         internal fun activityCamera(context : Context) : Intent {

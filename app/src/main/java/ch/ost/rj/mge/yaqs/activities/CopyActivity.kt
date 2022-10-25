@@ -6,15 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import ch.ost.rj.mge.yaqs.R
 import ch.ost.rj.mge.yaqs.intents.Intents
 
-class CActivity : AppCompatActivity() {
+class CopyActivity : AppCompatActivity() {
 
     private lateinit var backButton : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_c)
+        setContentView(R.layout.activity_copy)
 
-        backButton = findViewById(R.id.c_back)
+        backButton = findViewById(R.id.copy_back)
         backButton.setOnClickListener { startActivity(Intents.activityCamera(this)) }
     }
 
