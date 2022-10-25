@@ -4,6 +4,6 @@
     <string name="back">Back</string>
     <string name="history">History</string>
     <string name="open_link">Open Link</string>
-    <string name="c">C</string>
+    <string name="copy">Copy</string>
     <string name="no_history_implemented_yet">No History implemented yet.</string>
 </resources>

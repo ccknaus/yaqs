@@ -6,17 +6,20 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import ch.ost.rj.mge.yaqs.R
 import ch.ost.rj.mge.yaqs.intents.Intents
+import ch.ost.rj.mge.yaqs.model.LinkRepository.addLink
 import ch.ost.rj.mge.yaqs.permission.Camera
 
 class CameraActivity : AppCompatActivity() {
 
-    // model
-    private val CAMERA_PERMISSION_CODE = 1
-    private val URL = "https://www.ost.ch"
+    companion object {
+        // model
+        private const val CAMERA_PERMISSION_CODE = 1
+        private const val URL = "https://www.ost.ch"
+    }
 
     // view
     private lateinit var historyButton: Button
-    private lateinit var cButton : Button
+    private lateinit var copyButton : Button
     private lateinit var openLinkButton : Button
 
     // controller
@@ -24,8 +27,11 @@ class CameraActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        cButton = findViewById(R.id.camera_button_c)
-        cButton.setOnClickListener{ startActivity(Intents.activityC(this)) }
+        copyButton = findViewById(R.id.camera_button_copy)
+//        copyButton.setOnClickListener{ startActivity(Intents.activityCopy(this)) }
+        copyButton.setOnClickListener{
+            addLink(URL)
+        }
 
         historyButton = findViewById(R.id.camera_button_history)
         historyButton.setOnClickListener{ startActivity((Intents.activityHistory(this))) }
