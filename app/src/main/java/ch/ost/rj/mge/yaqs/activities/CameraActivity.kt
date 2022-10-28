@@ -6,7 +6,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import ch.ost.rj.mge.yaqs.R
 import ch.ost.rj.mge.yaqs.intents.Intents
-import ch.ost.rj.mge.yaqs.model.LinkRepository.addLink
+import ch.ost.rj.mge.yaqs.model.LinkRepository
 import ch.ost.rj.mge.yaqs.permission.Camera
 
 class CameraActivity : AppCompatActivity() {
