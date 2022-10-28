@@ -50,8 +50,8 @@ class CameraActivity : AppCompatActivity() {
         initBarcodeLauncher()
         barcodeLauncher.launch(ScanOptions().setOrientationLocked(false))
 
-        historyButton = findViewById(R.id.camera_button_history)
-        historyButton.setOnClickListener{ startActivity((Intents.activityHistory(this))) }
+        historyButton = findViewById(R.id.camera_button_camera)
+        historyButton.setOnClickListener{ barcodeLauncher.launch(ScanOptions()) }
 
         openLinkButton = findViewById(R.id.camera_button_openlink)
         openLinkButton.setOnClickListener{ startActivity(Intents.openURL(scannedResult)) }

@@ -1,5 +1,6 @@
 package ch.ost.rj.mge.yaqs
 
+import ch.ost.rj.mge.yaqs.model.ValidityChecker
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -9,9 +10,25 @@ import org.junit.Assert.*
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class ExampleUnitTest {
+class YAQSUnitTest {
+
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun NoURL_isURL() {
+        assertEquals(false, ValidityChecker().isURL("gg"))
+    }
+
+    @Test
+    fun URL_isURL() {
+        assertEquals(true, ValidityChecker().isURL("https://www.ost.ch"))
+    }
+
+    @Test
+    fun URLhttp_isURL() {
+        assertEquals(true, ValidityChecker().isURL("http://www.ost.ch"))
+    }
+
+    @Test
+    fun URLSlash_isURL() {
+        assertEquals(true, ValidityChecker().isURL("https://www.ost.ch/"))
     }
 }
