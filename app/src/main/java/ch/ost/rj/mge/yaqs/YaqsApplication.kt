@@ -10,6 +10,6 @@ class YaqsApplication: Application() {
 
         val context: Context = applicationContext
 
-//        LinkRepository.initialize(context)
+        LinkRepository.initialize(context)
     }
 }
