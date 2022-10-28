@@ -1,5 +1,7 @@
 package ch.ost.rj.mge.yaqs.activities
 
+// import ch.ost.rj.mge.yaqs.model.LinkRepository.addLink
+
 import android.Manifest
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -25,17 +27,20 @@ import com.journeyapps.barcodescanner.ScanOptions
 
 class CameraActivity : AppCompatActivity() {
 
+    // model
     companion object {
         private const val CAMERA_PERMISSION_CODE = 1
         private lateinit var barcodeLauncher: ActivityResultLauncher<ScanOptions>
         private var scannedResult = ""
     }
 
+    // view
     private lateinit var historyButton: Button
     private lateinit var copyButton : Button
     private lateinit var openLinkButton : Button
     private lateinit var adapter: HistoryAdapter
 
+    // controller
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -44,7 +49,6 @@ class CameraActivity : AppCompatActivity() {
         setupRecyclerView(this, adapter)
 
         requestCameraPermission()
-
         initBarcodeLauncher()
         barcodeLauncher.launch(ScanOptions().setOrientationLocked(false))
 
@@ -102,7 +106,6 @@ class CameraActivity : AppCompatActivity() {
     private fun setupRecyclerView(context: Context, adapter: HistoryAdapter) {
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
         val dividerItemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-
         val recyclerView: RecyclerView = findViewById(R.id.history_links)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
