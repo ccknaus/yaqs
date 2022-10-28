@@ -42,7 +42,7 @@ class CameraActivity : AppCompatActivity() {
         copyButton = findViewById(R.id.camera_button_copy)
         copyButton.setOnClickListener{
             val clip = ClipData.newPlainText("Link", scannedResult)
-            clipboard!!.setPrimaryClip(clip);
+            clipboard.setPrimaryClip(clip);
             Toast.makeText(applicationContext, "Copied to Clipboard", Toast.LENGTH_SHORT).show()
         }
 
