@@ -12,4 +12,8 @@ class ValidityChecker {
         return matcher.matches()
     }
 
+    fun isEmptyString(input: String): Boolean {
+        return input == ""
+    }
+
 }

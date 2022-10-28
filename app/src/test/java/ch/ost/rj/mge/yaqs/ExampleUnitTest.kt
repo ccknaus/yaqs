@@ -13,6 +13,17 @@ import org.junit.Assert.*
 class YAQSUnitTest {
 
     @Test
+    fun EmptyStr_isEmpty() {
+        assertEquals(true, ValidityChecker().isEmptyString(""))
+    }
+
+    @Test
+    fun EmptyStr_isNotEmpty() {
+        assertEquals(false, ValidityChecker().isEmptyString("gg"))
+    }
+
+
+    @Test
     fun NoURL_isURL() {
         assertEquals(false, ValidityChecker().isURL("gg"))
     }
