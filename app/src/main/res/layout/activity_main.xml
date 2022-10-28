@@ -26,30 +26,35 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/camera_button_history"
-                android:text="@string/history"
+                android:id="@+id/camera_button_camera"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_margin="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/camera"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/camera_button_openlink"
-                android:text="@string/open_link"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="0dp"
                 android:layout_margin="10dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/open_link"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/camera_button_copy"
-                android:text="@string/copy"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_margin="10dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/copy"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
