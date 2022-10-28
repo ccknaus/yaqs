@@ -16,7 +16,6 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryViewHolder>() {
     fun updateLinkList(links: List<Link>) {
         this.links = links
         notifyItemChanged(this.links.lastIndex)
-//        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {

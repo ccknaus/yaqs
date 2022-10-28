@@ -32,8 +32,6 @@
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation" />
-        <activity android:name=".activities.CopyActivity" />
-        <activity android:name=".activities.HistoryActivity" />
     </application>
 
 </manifest>
