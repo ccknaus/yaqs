@@ -28,10 +28,9 @@ class CameraActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         copyButton = findViewById(R.id.camera_button_copy)
-//        copyButton.setOnClickListener{ startActivity(Intents.activityCopy(this)) }
         copyButton.setOnClickListener{
             val time: Long = System.currentTimeMillis()
-            addLink(time, URL)
+            LinkRepository.addLink(time, URL)
         }
 
         historyButton = findViewById(R.id.camera_button_history)
