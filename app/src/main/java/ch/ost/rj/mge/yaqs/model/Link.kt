@@ -10,5 +10,8 @@ data class Link(
     val id: Int = 0,
 
     @ColumnInfo(name = "link")
-    val url: String
+    val url: String,
+
+    @ColumnInfo(name = "time")
+    val time: Long
 )
