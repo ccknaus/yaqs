@@ -6,7 +6,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import ch.ost.rj.mge.yaqs.R
 import ch.ost.rj.mge.yaqs.intents.Intents
-import ch.ost.rj.mge.yaqs.model.LinkRepository.addLink
+// import ch.ost.rj.mge.yaqs.model.LinkRepository.addLink
 import ch.ost.rj.mge.yaqs.permission.Camera
 
 class CameraActivity : AppCompatActivity() {
@@ -30,7 +30,7 @@ class CameraActivity : AppCompatActivity() {
         copyButton = findViewById(R.id.camera_button_copy)
 //        copyButton.setOnClickListener{ startActivity(Intents.activityCopy(this)) }
         copyButton.setOnClickListener{
-            addLink(URL)
+//            addLink(URL)
         }
 
         historyButton = findViewById(R.id.camera_button_history)
