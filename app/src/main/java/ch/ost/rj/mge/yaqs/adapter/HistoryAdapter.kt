@@ -1,5 +1,6 @@
 package ch.ost.rj.mge.yaqs.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ch.ost.rj.mge.yaqs.model.Link
 import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 interface HistoryAdapterSelectedCallback {
     fun elementSelected(link : Link)
@@ -16,6 +19,7 @@ interface HistoryAdapterSelectedCallback {
 class HistoryAdapter(val callback : HistoryAdapterSelectedCallback) : RecyclerView.Adapter<HistoryViewHolder>() {
     private var links: List<Link> = ArrayList()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateLinkList(links: List<Link>) {
         this.links = links
         notifyDataSetChanged()
@@ -39,9 +43,9 @@ class HistoryAdapter(val callback : HistoryAdapterSelectedCallback) : RecyclerVi
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         val link: Link = links[position]
         holder.linkTextView.text = link.url
-        holder.timeTextView.text = SimpleDateFormat("dd.MM.yy hh:mm:ss").format(link.time).toString()
+        holder.timeTextView.text = SimpleDateFormat("dd.MM.yy hh:mm:ss", Locale.ENGLISH).format(link.time).toString()
 
-        holder.itemView.setOnClickListener{ v: View ->
+        holder.itemView.setOnClickListener{ _ ->
             callback.elementSelected(link)
         }
     }

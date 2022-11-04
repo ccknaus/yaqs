@@ -6,5 +6,5 @@
     <string name="open_link">Open Link</string>
     <string name="copy">Copy</string>
     <string name="no_history_implemented_yet">No History implemented yet.</string>
-    <string name="entryText">This application requires camera permissions.</string>
+    <string name="entryText">Please scan a QR Code.</string>
 </resources>
