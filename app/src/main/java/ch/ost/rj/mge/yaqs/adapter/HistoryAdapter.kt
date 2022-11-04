@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import ch.ost.rj.mge.yaqs.model.Link
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 interface HistoryAdapterSelectedCallback {
     fun elementSelected(link : Link)
@@ -44,7 +43,7 @@ class HistoryAdapter(val callback : HistoryAdapterSelectedCallback) : RecyclerVi
         val link: Link = links[position]
         holder.linkTextView.text = link.url
         holder.timeTextView.text = SimpleDateFormat("dd.MM.yy hh:mm:ss", Locale.ENGLISH).format(link.time).toString()
-
+        // holder.row_linearlayout.setBackgroundColor(Color.parseColor("#567845"))
         holder.itemView.setOnClickListener{ _ ->
             callback.elementSelected(link)
         }

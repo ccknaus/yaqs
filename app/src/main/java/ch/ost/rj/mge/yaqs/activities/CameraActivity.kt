@@ -43,6 +43,7 @@ class CameraActivity : AppCompatActivity(), HistoryAdapterSelectedCallback {
     private lateinit var adapter: HistoryAdapter
 
     override fun elementSelected(link: Link) {
+        // TODO
     }
 
     // controller
