@@ -13,6 +13,7 @@ import java.util.*
 
 interface HistoryAdapterSelectedCallback {
     fun elementSelected(link : Link)
+    fun elementsCount(count : Int)
 }
 
 class HistoryAdapter(val callback : HistoryAdapterSelectedCallback) : RecyclerView.Adapter<HistoryViewHolder>() {
@@ -43,9 +44,10 @@ class HistoryAdapter(val callback : HistoryAdapterSelectedCallback) : RecyclerVi
         val link: Link = links[position]
         holder.linkTextView.text = link.url
         holder.timeTextView.text = SimpleDateFormat("dd.MM.yy hh:mm:ss", Locale.ENGLISH).format(link.time).toString()
-        // holder.row_linearlayout.setBackgroundColor(Color.parseColor("#567845"))
-        holder.itemView.setOnClickListener{ _ ->
+        callback.elementsCount(getItemCount())
+        holder.itemView.setOnClickListener{
             callback.elementSelected(link)
+            callback.elementsCount(itemCount)
         }
 
     }

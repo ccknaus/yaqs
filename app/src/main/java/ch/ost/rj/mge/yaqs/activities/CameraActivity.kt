@@ -8,6 +8,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
@@ -34,11 +35,12 @@ class CameraActivity : AppCompatActivity(), HistoryAdapterSelectedCallback {
         private const val CAMERA_PERMISSION_CODE = 1
         private lateinit var barcodeLauncher: ActivityResultLauncher<ScanOptions>
         private var scannedResult = ""
+        private var linkCount = 0
         private const val FULL_VISIBLE_ALPHA : Float = 1.0f
         private const val HALF_VISIBLE_ALPHA : Float = FULL_VISIBLE_ALPHA / 2.0f
     }
 
-    private lateinit var historyButton: Button
+    private lateinit var cameraButton: Button
     private lateinit var copyButton : Button
     private lateinit var openLinkButton : Button
     private lateinit var adapter: HistoryAdapter
@@ -46,6 +48,11 @@ class CameraActivity : AppCompatActivity(), HistoryAdapterSelectedCallback {
     override fun elementSelected(link: Link) {
         scannedResult = link.url
         updateButtons(link.url)
+    }
+
+    override fun elementsCount(count: Int) {
+        linkCount = count
+        updateEntryText()
     }
 
     private fun updateButtons(link: String) {
@@ -58,7 +65,14 @@ class CameraActivity : AppCompatActivity(), HistoryAdapterSelectedCallback {
 
     }
 
-    // controller
+    private fun updateEntryText() {
+        if(linkCount > 0) {
+            val entryView = findViewById<TextView>(R.id.id_entry_view)
+            entryView.text = ""
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -66,19 +80,21 @@ class CameraActivity : AppCompatActivity(), HistoryAdapterSelectedCallback {
         adapter = HistoryAdapter(this)
         setupRecyclerView(this, adapter)
 
-        requestCameraPermission()
         initBarcodeLauncher()
-        barcodeLauncher.launch(ScanOptions().setOrientationLocked(false))
 
-        setupCopyButton()
-
-        historyButton = findViewById(R.id.camera_button_camera)
-        historyButton.setOnClickListener{ barcodeLauncher.launch(ScanOptions()) }
+        cameraButton = findViewById(R.id.camera_button_camera)
+        cameraButton.setOnClickListener{
+            requestCameraPermission()
+            barcodeLauncher.launch(ScanOptions().setOrientationLocked(false))
+        }
 
         openLinkButton = findViewById(R.id.camera_button_openlink)
         openLinkButton.setOnClickListener{ startActivity(Intents.openURL(scannedResult)) }
 
+        setupCopyButton()
+
         updateButtons(scannedResult)
+        updateEntryText()
     }
 
     override fun onResume() {
@@ -103,8 +119,6 @@ class CameraActivity : AppCompatActivity(), HistoryAdapterSelectedCallback {
             val clip = ClipData.newPlainText("Link", scannedResult)
             clipboard.setPrimaryClip(clip)
             Toast.makeText(applicationContext, "Copied to Clipboard", Toast.LENGTH_SHORT).show()
-//            val time: Long = getCurrentTime()
-//            LinkRepository.addLink(time, "https://www.ost.ch")
             refreshHistoryView()
         }
     }
