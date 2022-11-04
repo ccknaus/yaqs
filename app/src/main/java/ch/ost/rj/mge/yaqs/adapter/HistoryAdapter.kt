@@ -44,6 +44,7 @@ class HistoryAdapter(val callback : HistoryAdapterSelectedCallback) : RecyclerVi
         holder.itemView.setOnClickListener{ v: View ->
             callback.elementSelected(link)
         }
+
     }
 
     override fun getItemCount(): Int {

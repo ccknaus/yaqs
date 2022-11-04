@@ -21,6 +21,7 @@ import ch.ost.rj.mge.yaqs.adapter.HistoryAdapter
 import ch.ost.rj.mge.yaqs.intents.Intents
 import ch.ost.rj.mge.yaqs.model.Link
 import ch.ost.rj.mge.yaqs.model.LinkRepository
+import ch.ost.rj.mge.yaqs.model.ValidityChecker
 import ch.ost.rj.mge.yaqs.permission.Camera
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
@@ -29,20 +30,32 @@ import com.journeyapps.barcodescanner.ScanOptions
 
 class CameraActivity : AppCompatActivity(), HistoryAdapterSelectedCallback {
 
-    // model
     companion object {
         private const val CAMERA_PERMISSION_CODE = 1
         private lateinit var barcodeLauncher: ActivityResultLauncher<ScanOptions>
         private var scannedResult = ""
+        private const val FULL_VISIBLE_ALPHA : Float = 1.0f
+        private const val HALF_VISIBLE_ALPHA : Float = FULL_VISIBLE_ALPHA / 2.0f
     }
 
-    // view
     private lateinit var historyButton: Button
     private lateinit var copyButton : Button
     private lateinit var openLinkButton : Button
     private lateinit var adapter: HistoryAdapter
 
     override fun elementSelected(link: Link) {
+        scannedResult = link.url
+        updateButtons(link.url)
+    }
+
+    private fun updateButtons(link: String) {
+        val isURL : Boolean = ValidityChecker().isURL(link)
+        val isEmptyString : Boolean = ValidityChecker().isEmptyString(link)
+        copyButton.isEnabled = !isEmptyString
+        copyButton.alpha = if (isEmptyString) HALF_VISIBLE_ALPHA else FULL_VISIBLE_ALPHA
+        openLinkButton.isEnabled = isURL
+        openLinkButton.alpha = if (!isURL) HALF_VISIBLE_ALPHA else FULL_VISIBLE_ALPHA
+
     }
 
     // controller
@@ -64,6 +77,8 @@ class CameraActivity : AppCompatActivity(), HistoryAdapterSelectedCallback {
 
         openLinkButton = findViewById(R.id.camera_button_openlink)
         openLinkButton.setOnClickListener{ startActivity(Intents.openURL(scannedResult)) }
+
+        updateButtons(scannedResult)
     }
 
     override fun onResume() {
@@ -88,8 +103,8 @@ class CameraActivity : AppCompatActivity(), HistoryAdapterSelectedCallback {
             val clip = ClipData.newPlainText("Link", scannedResult)
             clipboard.setPrimaryClip(clip)
             Toast.makeText(applicationContext, "Copied to Clipboard", Toast.LENGTH_SHORT).show()
-            val time: Long = getCurrentTime()
-            LinkRepository.addLink(time, "something new")
+//            val time: Long = getCurrentTime()
+//            LinkRepository.addLink(time, "https://www.ost.ch")
             refreshHistoryView()
         }
     }
