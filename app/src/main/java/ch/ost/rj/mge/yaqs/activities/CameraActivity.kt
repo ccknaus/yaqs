@@ -16,8 +16,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ch.ost.rj.mge.yaqs.R
+import ch.ost.rj.mge.yaqs.adapter.HistoryAdapterSelectedCallback
 import ch.ost.rj.mge.yaqs.adapter.HistoryAdapter
 import ch.ost.rj.mge.yaqs.intents.Intents
+import ch.ost.rj.mge.yaqs.model.Link
 import ch.ost.rj.mge.yaqs.model.LinkRepository
 import ch.ost.rj.mge.yaqs.permission.Camera
 import com.journeyapps.barcodescanner.ScanContract
@@ -25,7 +27,7 @@ import com.journeyapps.barcodescanner.ScanIntentResult
 import com.journeyapps.barcodescanner.ScanOptions
 
 
-class CameraActivity : AppCompatActivity() {
+class CameraActivity : AppCompatActivity(), HistoryAdapterSelectedCallback {
 
     // model
     companion object {
@@ -40,12 +42,15 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var openLinkButton : Button
     private lateinit var adapter: HistoryAdapter
 
+    override fun elementSelected(link: Link) {
+    }
+
     // controller
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        adapter = HistoryAdapter()
+        adapter = HistoryAdapter(this)
         setupRecyclerView(this, adapter)
 
         requestCameraPermission()
@@ -70,6 +75,10 @@ class CameraActivity : AppCompatActivity() {
         adapter.updateLinkList(LinkRepository.getLinks())
     }
 
+    private fun getCurrentTime(): Long {
+        return System.currentTimeMillis()
+    }
+
 
     private fun setupCopyButton() {
         val clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
@@ -79,7 +88,7 @@ class CameraActivity : AppCompatActivity() {
             val clip = ClipData.newPlainText("Link", scannedResult)
             clipboard.setPrimaryClip(clip)
             Toast.makeText(applicationContext, "Copied to Clipboard", Toast.LENGTH_SHORT).show()
-            val time: Long = System.currentTimeMillis()
+            val time: Long = getCurrentTime()
             LinkRepository.addLink(time, "something new")
             refreshHistoryView()
         }
@@ -97,7 +106,7 @@ class CameraActivity : AppCompatActivity() {
             } else {
                 scannedResult = result.contents
                 Toast.makeText(this@CameraActivity, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
-                val time: Long = System.currentTimeMillis()
+                val time: Long = getCurrentTime()
                 LinkRepository.addLink(time, scannedResult)
             }
         }

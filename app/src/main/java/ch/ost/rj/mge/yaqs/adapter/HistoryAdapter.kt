@@ -8,14 +8,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ch.ost.rj.mge.yaqs.model.Link
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 
-class HistoryAdapter: RecyclerView.Adapter<HistoryViewHolder>() {
+interface HistoryAdapterSelectedCallback {
+    fun elementSelected(link : Link)
+}
+
+class HistoryAdapter(val callback : HistoryAdapterSelectedCallback) : RecyclerView.Adapter<HistoryViewHolder>() {
     private var links: List<Link> = ArrayList()
 
     fun updateLinkList(links: List<Link>) {
         this.links = links
-        notifyItemChanged(this.links.lastIndex)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
@@ -27,6 +30,7 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryViewHolder>() {
                 parent,
                 false
             )
+
         val linkTextView = view.findViewById<TextView>(android.R.id.text1)
         val timeTextView = view.findViewById<TextView>(android.R.id.text2)
         return HistoryViewHolder(view, linkTextView, timeTextView)
@@ -36,7 +40,10 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryViewHolder>() {
         val link: Link = links[position]
         holder.linkTextView.text = link.url
         holder.timeTextView.text = SimpleDateFormat("dd.MM.yy hh:mm:ss").format(link.time).toString()
-//        holder.timeTextView.text = DateTimeFormatter.ofPattern("dd.MM.yy hh:mm:ss")
+
+        holder.itemView.setOnClickListener{ v: View ->
+            callback.elementSelected(link)
+        }
     }
 
     override fun getItemCount(): Int {

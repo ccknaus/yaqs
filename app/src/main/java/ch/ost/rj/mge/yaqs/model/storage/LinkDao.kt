@@ -7,7 +7,7 @@ import ch.ost.rj.mge.yaqs.model.Link
 
 @Dao
 interface LinkDao {
-    @Query("SELECT * FROM links")
+    @Query("SELECT * FROM links ORDER BY time DESC LIMIT 5")
     fun getLinks(): List<Link>
 
     @Insert
