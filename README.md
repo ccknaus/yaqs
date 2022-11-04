@@ -1,11 +1,11 @@
 # yaqs
 
 ## Minimalziel
-6 Punkte - Verwendung von Kotlin statt Java (pro Teammitglied)
-3 Punkte - Funtionalität (pro Funktion / Screen): Copy, Openlink, Camera
-2 Punkte - Persistenz: SQLite
-1 Punkte - Kamera
-1 Punkte - Integration von Drittkomponenten (Libraries): xzing
+6 Punkte - Verwendung von Kotlin statt Java (pro Teammitglied)</br>
+3 Punkte - Funtionalität (pro Funktion / Screen): Copy, Openlink, Camera</br>
+2 Punkte - Persistenz: SQLite</br>
+1 Punkte - Kamera</br>
+1 Punkte - Integration von Drittkomponenten (Libraries): xzing</br>
 
 ## screenshots
 ![Alt text](/screenshots/1.png "Optional title")
