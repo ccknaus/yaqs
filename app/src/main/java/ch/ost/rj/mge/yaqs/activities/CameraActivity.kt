@@ -5,8 +5,6 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
-import android.view.View
-import android.view.animation.AlphaAnimation
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
