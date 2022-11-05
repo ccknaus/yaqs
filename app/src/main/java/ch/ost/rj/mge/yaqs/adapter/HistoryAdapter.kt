@@ -15,6 +15,7 @@ import java.util.*
 interface HistoryAdapterSelectedCallback {
     fun elementSelected(link: Link)
     fun elementsCount(count: Int)
+    fun elementDelete(link: Link)
 }
 
 class HistoryAdapter(private val callback : HistoryAdapterSelectedCallback) : RecyclerView.Adapter<HistoryViewHolder>() {
@@ -49,6 +50,11 @@ class HistoryAdapter(private val callback : HistoryAdapterSelectedCallback) : Re
             setFadeAnimation(holder.itemView)
             callback.elementSelected(link)
             callback.elementsCount(itemCount)
+        }
+        holder.itemView.setOnLongClickListener{ v: View ->
+            v.isLongClickable = true
+            callback.elementDelete(link)
+            true
         }
     }
 

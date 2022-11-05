@@ -55,6 +55,11 @@ class CameraActivity : AppCompatActivity(), HistoryAdapterSelectedCallback {
         updateEntryText()
     }
 
+    override fun elementDelete(link: Link) {
+        LinkRepository.deleteLink(link)
+        refreshHistoryView()
+    }
+
     private fun updateButtons(link: String) {
         val isURL : Boolean = ValidityChecker().isURL(link)
         val isEmptyString : Boolean = ValidityChecker().isEmptyString(link)
