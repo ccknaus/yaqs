@@ -1,13 +1,38 @@
-# yaqs
+# Yaqs
 
-## Minimalziel
-6 Punkte - Verwendung von Kotlin statt Java (pro Teammitglied)</br>
-3 Punkte - Funtionalität (pro Funktion / Screen): Copy, Openlink, Camera</br>
-2 Punkte - Persistenz: SQLite</br>
-1 Punkte - Kamera</br>
-1 Punkte - Integration von Drittkomponenten (Libraries): xzing</br>
+This is Yet Another QR-Code Scanner... yaqs, ahm no, yay!
+
+It does what a QR-code scanner is supposed to do: scan a QR code, interpret all the pixels, translate this into a human-readable format, and let the user do something with that scan result.
+
+## Features for users
+- Scan a QR code
+- check if URL: open link and copy to Clipboard
+- check if simple text: copy to Clipboard only
+- history with persistent storage
+- delete entries from history
+
+---
 
 ## Screenshots
-![Alt text](/screenshots/1.png "Optional title")
-![Alt text](/screenshots/2.png "Optional title")
-![Alt text](/screenshots/3.png "Optional title")
+<img src="screenshots/1.png" alt="drawing" width="250"/>
+<img src="screenshots/2.png" alt="drawing" width="250"/>
+<img src="screenshots/3.png" alt="drawing" width="250"/>
+
+---
+
+## Features for grading
+- Kotlin: 6P
+- Functions: 4P (scan, copy, open, delete)
+- Persistence: 2P (database)
+- Notifications: 1P (Toast)
+- Actors: 1P (camera)
+- Third party libraries: 1P (zxing)
+- Bonus points  ¯\\\_(ツ)_/¯ 
+
+
+## Yaqs Haiku
+```
+Scan wisely with Yaqs
+It observes everything
+Saves it forever
+```
