@@ -23,4 +23,8 @@ object LinkRepository {
         database.linkDao().insertLink(link)
         return link
     }
+
+    fun deleteLink(link: Link) {
+        database.linkDao().deleteLink(link)
+    }
 }

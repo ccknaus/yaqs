@@ -1,12 +1,12 @@
 package ch.ost.rj.mge.yaqs.activities
 
-// import ch.ost.rj.mge.yaqs.model.LinkRepository.addLink
-
 import android.Manifest
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
+import android.view.View
+import android.view.animation.AlphaAnimation
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -17,8 +17,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ch.ost.rj.mge.yaqs.R
-import ch.ost.rj.mge.yaqs.adapter.HistoryAdapterSelectedCallback
 import ch.ost.rj.mge.yaqs.adapter.HistoryAdapter
+import ch.ost.rj.mge.yaqs.adapter.HistoryAdapterSelectedCallback
 import ch.ost.rj.mge.yaqs.intents.Intents
 import ch.ost.rj.mge.yaqs.model.Link
 import ch.ost.rj.mge.yaqs.model.LinkRepository
@@ -140,6 +140,7 @@ class CameraActivity : AppCompatActivity(), HistoryAdapterSelectedCallback {
             }
         }
     }
+
 
     private fun setupRecyclerView(context: Context, adapter: HistoryAdapter) {
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
