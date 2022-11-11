@@ -25,6 +25,7 @@ class HistoryAdapter(private val callback : HistoryAdapterSelectedCallback) : Re
     fun updateLinkList(links: List<Link>) {
         this.links = links
         notifyDataSetChanged()
+        callback.elementsCount(itemCount)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
@@ -49,7 +50,6 @@ class HistoryAdapter(private val callback : HistoryAdapterSelectedCallback) : Re
         holder.itemView.setOnClickListener{
             setFadeAnimation(holder.itemView)
             callback.elementSelected(link)
-            callback.elementsCount(itemCount)
         }
         holder.itemView.setOnLongClickListener{ v: View ->
             v.isLongClickable = true

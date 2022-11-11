@@ -69,9 +69,11 @@ class CameraActivity : AppCompatActivity(), HistoryAdapterSelectedCallback {
     }
 
     private fun updateEntryText() {
+        val entryView = findViewById<TextView>(R.id.id_entry_view)
         if(linkCount > 0) {
-            val entryView = findViewById<TextView>(R.id.id_entry_view)
             entryView.text = ""
+        } else {
+            entryView.text = getString(R.string.entryText)
         }
 
     }
@@ -97,7 +99,6 @@ class CameraActivity : AppCompatActivity(), HistoryAdapterSelectedCallback {
         setupCopyButton()
 
         updateButtons(scannedResult)
-        updateEntryText()
     }
 
     override fun onResume() {
@@ -107,6 +108,7 @@ class CameraActivity : AppCompatActivity(), HistoryAdapterSelectedCallback {
 
     private fun refreshHistoryView() {
         adapter.updateLinkList(LinkRepository.getLinks())
+        updateEntryText()
     }
 
     private fun getCurrentTime(): Long {
@@ -122,7 +124,6 @@ class CameraActivity : AppCompatActivity(), HistoryAdapterSelectedCallback {
             val clip = ClipData.newPlainText("Link", scannedResult)
             clipboard.setPrimaryClip(clip)
             Toast.makeText(applicationContext, "Copied to Clipboard", Toast.LENGTH_SHORT).show()
-            refreshHistoryView()
         }
     }
 
